@@ -1,0 +1,14 @@
+packet_loss_rate 0.1
+Transmission finished: 2167739 bytes / 1.214365 seconds = 1785079.559277 bps
+packet_loss_rate 0.2
+Transmission finished: 2167739 bytes / 1.304606 seconds = 1661604.092654 bps
+packet_loss_rate 0.3
+Transmission finished: 2167739 bytes / 1.979450 seconds = 1095121.620446 bps
+packet_loss_rate 0.4
+Transmission finished: 2167739 bytes / 2.277357 seconds = 951865.990488 bps
+packet_loss_rate 0.5
+Transmission finished: 2167739 bytes / 2.952973 seconds = 734086.937640 bps
+
+
+
+
