@@ -54,9 +54,9 @@ The server is continuously listening on a welcoming TCP port for clients to conn
 
     3. In either case, the server will additionally send the following information to the seller and the winning buyer:
     
-        i. To Seller: the Winning Buyer’s IP address in the format of x.x.x.x
+        - To Seller: the Winning Buyer’s IP address in the format of x.x.x.x
 
-        ii. To Winning Buyer: the Seller’s IP address in the format of y.y.y.y
+        - To Winning Buyer: the Seller’s IP address in the format of y.y.y.y
 
     b. If the highest bid is less than <lowest_price>, the server tells the Seller that unfortunately its item was not sold in the auction, and tells all other clients that unfortunately they did not win in the auction. The server then closes all connections.
 
