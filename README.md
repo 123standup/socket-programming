@@ -131,7 +131,20 @@ The figure below represents a visual of the communication between the Seller/Buy
 </p>
 
 ### Starting the Auctioneer server
-The server is started by specifying the TCP port of the welcoming socket. In the example below, the server is running on port 12345. Display a message as in Step 1 in the figure.
+The server is started by specifying the TCP port of the welcoming socket. In the screenshot below, the server is running on port 3333.
 <p align="center">
   <img src="img/auctionstart.png" style="width: 100%;">
+</p>
+
+### Starting the client (Seller)
+When starting the client, we have to specify the IP address of the Auction Server and the port number where the server is running. In the example below, the server is at IP address 127.0.0.1 running on TCP port 3333. If successfully connected, a message is displayed with relevant information. When a request is entered from the Seller side, if it is invalid, the server should return an invalid prompt; if it is valid, the server should send a feedback to the Sellerand set itself to wait for Buyers. The Seller then displays a message indicating the auction has started. Here the request “2 10 3 WolfPackSword” is used as an example (which means “use auction type 2, starting at $10 minimum, allow 2 bids, for the item name ‘WolfPackSword’ to be sold.”)
+<p align="center">
+  <img src="img/seller1.png" style="width: 100%;">
+</p>
+On the server side:
+<p align="center">
+  <img src="img/auctionstart.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/server2.png" style="width: 100%;">
 </p>
