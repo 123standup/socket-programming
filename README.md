@@ -148,3 +148,9 @@ On the server side:
 <p align="center">
   <img src="img/server2.png" style="width: 100%;">
 </p>
+If another client is trying to connect to the server after the Seller is connected but before the request is received, the server will give a busy prompt, and then close the connection:
+<p align="center">
+  <img src="img/seller2.png" style="width: 100%;">
+</p>
+
+### Starting the Client (Buyer)
