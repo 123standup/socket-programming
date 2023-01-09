@@ -1,5 +1,5 @@
 # Socket Programming
-This is a project assignment for Internet Protocols course (CSC 573) at NCSU. In this assignment, we are required to build an auction system including an auction server, an auction seller, and multiple auction buyers. TCP connections are used in every text communications in the whole auctionary process, and UDP connection with reliable data transfer mechanism is used for file transfer.
+This is a project assignment for Internet Protocols course (CSC 573) at NCSU. In this assignment, we are required to build an auction system including an auction server, an auction seller, and multiple auction buyers. TCP connections are used in every text communications in the whole auctioneer process, and UDP connection with reliable data transfer mechanism is used in file transfer.
 ## Background
 Auction theory has been proven very useful in many types of economic markets. The basic scenario of an auction is to sell a piece of good or service to one of a group of potential Buyers with the maximum price. There are two types of auctions, open-bid auction and sealed-bid auction, which are commonly used in different scenarios:
 - **Open-bid auction**: The bids are open to all participants. The auction commonly goes in a sequential manner, with either Buyers or the auctioneer continuously announcing new prices until a highest acceptable price is identified. In an English auction (aka open-bid ascending price auction), a lowest price is announced by the auctioneer, after which participants compete with each other by raising the price until a highest bid receives no further competition and wins the auction. In a Dutch auction (aka open-bid descending price auction), the auctioneer announces a high asking price, and continuously lower the price until a first accepting bid is received, which wins the auction. Note that in an open-bid auction, the final winning price is known to all participants.
@@ -124,4 +124,14 @@ anything with the message, client rolls a dice, and directly discard the message
 
 The <packet_loss_rate> is given when a client program is started, indicating how lossy the simulated network is. It’s value ranges between [0.0, 1.0].
 
+## Program Output
+The figure below represents a visual of the communication between the Seller/Buyer clients and the Auctioneer Server.
+<p align="center">
+  <img src="img/networktopology.png">
+</p>
 
+### Starting the Auctioneer server
+The server is started by specifying the TCP port of the welcoming socket. In the example below, the server is running on port 12345. Display a message as in Step 1 in the figure.
+<p align="center">
+  <img src="img/auctionstart.png" style="width: 100%;">
+</p>
