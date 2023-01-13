@@ -137,7 +137,7 @@ The server is started by specifying the TCP port of the welcoming socket. In the
 </p>
 
 ### Starting the client (Seller)
-When starting the client, we have to specify the IP address of the Auction Server and the port number where the server is running. In the example below, the server is at IP address 127.0.0.1 running on TCP port 3333. If successfully connected, a message is displayed with relevant information. When a request is entered from the Seller side, if it is invalid, the server should return an invalid prompt; if it is valid, the server should send a feedback to the Sellerand set itself to wait for Buyers. The Seller then displays a message indicating the auction has started. Here the request “2 10 3 WolfPackSword” is used as an example (which means “use auction type 2, starting at $10 minimum, allow 2 bids, for the item name ‘WolfPackSword’ to be sold.”)
+When starting the client, we have to specify the IP address of the Auction Server and the port number where the server is running. In the example below, the server is at IP address 127.0.0.1 running on TCP port 3333. If successfully connected, a message is displayed with relevant information. When a request is entered from the Seller side, if it is invalid, the server should return an invalid prompt; if it is valid, the server should send a feedback to the Sellerand set itself to wait for Buyers. The Seller then displays a message indicating the auction has started. Here the request “2 10 2 WolfPackSword” is used as an example (which means “use auction type 2, starting at $10 minimum, allow 2 bids, for the item name ‘WolfPackSword’ to be sold.”)
 <p align="center">
   <img src="img/seller1.png" style="width: 100%;">
 </p>
@@ -154,3 +154,81 @@ If another client is trying to connect to the server after the Seller is connect
 </p>
 
 ### Starting the Client (Buyer)
+After the server receives a request from the Seller, Buyer clients can start to connect. When connected, it will be told the assigned role and a waiting / bid start prompt sent automatically by the server after its connection.
+
+Buyer connected and waiting for other Buyers:
+<p align="center">
+  <img src="img/client1.png" style="width: 100%;">
+</p>
+Buyer connected and bidding started immediately afterwards (no waiting prompt and the bidding start prompt immediately follows as in the next subsection):
+<p align="center">
+  <img src="img/client2.png" style="width: 100%;">
+</p>
+On the server side, a message should be posted whenever a client is connected , in the meantime all clients should be informed of their roles, and whether the server is still waiting for other Buyers. After the requested number of Buyers are connected, the server will display that the bidding starts, send a prompt to all the Buyers to start bidding, and spawn a new thread for handling the bidding.
+<p align="center">
+  <img src="img/server2.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/server3.png" style="width: 100%;">
+</p>
+
+## Bidding start
+Once the bidding start, each Buyer will receive a message indicating they can start bidding. They will each enter a bid, get a prompt from the server indicating the bid is received, and wait for the final result.
+
+On the Buyer side:
+<p align="center">
+  <img src="img/client1.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/client3.png" style="width: 100%;">
+</p>
+The Server will need to display each bid received
+<p align="center">
+  <img src="img/server2.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/server3.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/server4.png" style="width: 100%;">
+</p>
+
+## Get the final auction result
+After all bids are received, the server should determine which Buyer wins this auction, and determine the price for the Buyer based on the policy defined in the request by the Seller client. The server then needs to send the result via different messages to the Seller, the winning Buyer, and the losing Buyers. The server finally closes the connection to all clients and starts waiting for the next Seller to connect. The following screenshots are essentially wrap-ups of the entire process of an auction, with highlights on outputs for the current step.
+
+On the Server side:
+<p align="center">
+  <img src="img/server2.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/server3.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/server5.png" style="width: 100%;">
+</p>
+
+On the Seller side:
+<p align="center">
+  <img src="img/seller1.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/seller3.png" style="width: 100%;">
+</p>
+
+On the Buyer side:
+<p align="center">
+  <img src="img/client1.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/client3.png" style="width: 100%;">
+</p>
+<p align="center">
+  <img src="img/client4.png" style="width: 100%;">
+</p>
+
+Or if the Buyer won:
+<p align="center">
+  <img src="img/client5.png" style="width: 100%;">
+</p>
+
+## RDT (no packet loss)
