@@ -172,7 +172,7 @@ On the server side, a message should be posted whenever a client is connected , 
   <img src="img/server3.png" style="width: 100%;">
 </p>
 
-## Bidding start
+### Bidding start
 Once the bidding start, each Buyer will receive a message indicating they can start bidding. They will each enter a bid, get a prompt from the server indicating the bid is received, and wait for the final result.
 
 On the Buyer side:
@@ -231,4 +231,47 @@ Or if the Buyer won:
   <img src="img/client5.png" style="width: 100%;">
 </p>
 
-## RDT (no packet loss)
+### RDT (no packet loss)
+After the auction is over, the seller starts to initiate the reliable data transfer process to the Winning Buyer (WB), all the other buyers that failed on the auction should be terminated.
+After initiation, the seller starts sending the file and the WB starts receiving the file. Some necessary information needs to be explicitly output to indicate the process of file transfer. For example, control seq send, data seq send, Ack received, etc.
+
+On the Seller side:
+<p align="center">
+  <img src="img/seller4.png" style="width: 100%;">
+</p>
+
+On the Winner Buyer side:
+<p align="center">
+  <img src="img/wb1.png" style="width: 100%;">
+</p>
+
+After the file has been sent out completely, the seller will terminate the rdt with sending control signal fin. The WB will output a message indicating all the data is received and output a statistical result of received data bytes divided by the completion time.
+
+On the Seller side:
+<p align="center">
+  <img src="img/seller5.png" style="width: 100%;">
+</p>
+
+On the Buyer side:
+<p align="center">
+  <img src="img/wb2.png" style="width: 100%;">
+</p>
+
+### RDT (with packet loss)
+With packet loss, the clients need to be provided with a parameter indicating the packet loss rate.
+<p align="center">
+  <img src="img/client6.png" style="width: 100%;">
+</p>
+
+After the auction is over, the seller starts to initiate the reliable data transfer process to the Winning Buyer (WB), all the other buyers that failed on the auction should be terminated.
+After initiation, the seller starts sending the file and the WB starts receiving the file. Some necessary information needs to be explicitly output to indicate the process of file transfer. For example, the Ack dropped, Msg re-sent, etc.
+
+On the Seller side:
+<p align="center">
+  <img src="img/seller6.png" style="width: 100%;">
+</p>
+
+On the Buyer side:
+<p align="center">
+  <img src="img/wb3.png" style="width: 100%;">
+</p>
